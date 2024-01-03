@@ -27,7 +27,7 @@
             "outputPath": "dist/memory-game",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "baseHref": "/https://github.com/panchal-ayuj/MemoryGam/",
+            "baseHref": "/https://github.com/panchal-ayuj/MemoryGame/",
             "polyfills": [
               "zone.js"
             ],
