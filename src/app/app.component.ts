@@ -1,10 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'MemoryGame';
+export class AppComponent implements OnInit {
+  disp: boolean = true;
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    // Check the local storage for the flag
+    const visitedGamePage = localStorage.getItem('visitedGamePage');
+
+    if (visitedGamePage) {
+      // User has visited the game page before, hide the game list
+      this.disp = false;
+    }
+
+    // Subscribe to router events
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Check if the route is the game page
+        if (event.url.includes('/sixgame') || event.url.includes('/twelvegame')) {
+          // Set the flag in local storage
+          localStorage.setItem('visitedGamePage', 'true');
+        } else if (event.url.includes('/')) {
+          this.disp = true;
+        }
+      }
+    });
+  }
+
+  changeDisp() {
+    this.disp = false;
+  }
 }

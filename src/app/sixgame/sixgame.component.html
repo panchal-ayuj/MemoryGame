@@ -1,0 +1,28 @@
+<div class="card-grid">
+  <div *ngFor="let row of grid; let rowIndex = index" class="card-row">
+    <app-card
+      *ngFor="let card of row; let colIndex = index"
+      [value]="card.value"
+      [flipped]="card.flipped"
+      [disp]="card.disp"
+      (cardClicked)="onCardClick(card, rowIndex, colIndex)"
+      [class.disabled]="!isFlippingAllowed && !card.flipped"
+    ></app-card>
+  </div>
+</div>
+
+<button
+  *ngIf="showPlayAgainButton"
+  (click)="playAgain()"
+  class="play-again-button"
+>
+  Play Again
+</button>
+
+<div class="display-bar">
+  <p>Moves: {{ moves }}</p>
+  <p>Correct Moves: {{ correctMoves }}</p>
+  <p>Total Games Played: {{ totalGamesPlayed }}</p>
+</div>
+
+
