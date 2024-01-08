@@ -10,6 +10,10 @@ export class CardComponent {
   @Input() flipped: boolean = false;
   @Input() disp: boolean = true;
   @Output() cardClicked = new EventEmitter<{ value: string; flipped: boolean }>();
+  getImagePath(): string {
+    // Assuming you have images named 'A.jpg', 'B.jpg', 'C.jpg', etc.
+    return `assets/${this.value}.png`;
+  }
 
   flipCard() {
     if (!this.flipped) {

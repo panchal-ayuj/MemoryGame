@@ -1,3 +1,6 @@
 <div class="card" (click)="flipCard()" *ngIf="disp">
-    <div *ngIf="flipped" class="card-content">{{ value }}</div>
+    <div *ngIf="flipped" class="card-content">
+        <!-- Use an image tag with ngIf to conditionally display the image when the card is flipped -->
+        <img *ngIf="flipped" [src]="getImagePath()" alt="Flipped Card" width="100px" height="160px" style="object-fit: contain;">
+    </div>
 </div>
